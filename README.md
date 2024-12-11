@@ -1,5 +1,5 @@
 # bolder-gapanalysis-cwr
-
+______
 # Crop Wild Relatives GapAnalysis R
 ______
 # The GapAnalysis R package is under development nowadays! (THIS IS NOT THE OFFICIAL REPO!)
@@ -10,9 +10,12 @@ gbuffer has been revamped to use terra. This still returns a sp object so it's n
 FCSex, ERSex, GRSex functions have remove name space funciton calls when calling (gBuffer, ERSex, GRSex) to allow these replacement function to be source directly from this repo. 
 
 ## Description
-This repo was designed for BOLDER project Gap Analysiss
+This repo was designed for BOLDER project Gap Analysis to:
+- Obtain species distribution model
+- Polish species distribution model using native areas (Shapefile) and land use (resampled file from https://esa-worldcover.org/en)
+- Run Ex-situ Gap Analysis and obtain gap map per species
 
-## Installation
+## Installation of GapAnalysis (First step)
 GapAnalysis can be installed as follows
 ```r
 #CRAN
@@ -21,10 +24,17 @@ install.packages("GapAnalysis")
 library(devtools)
 remotes::install_github("ccsosa/GapAnalysis")
 ```
-A full list of libraries needed for the package is included below.
-
-**Dependencies:** `raster`
-
-**Imports:** `base, utils, sp, tmap, data.table, sf, methods, geosphere, data.table, fasterize, rmarkdown`
-
-**Suggests:** `knitr, rgdal, rgeos, kableExtra, DT`
+______
+## Installation of this repo (Second step)
+Please download this repo by:
+- Click on <> Code
+- Download ZIP
+- Unzip in your local computer
+______
+## Prepare your files (Thid step)
+Please download the following files: 
+- land_cover_5km_for_cleaning.tif
+- Crop and mask WorldClim layers v2.1.
+- A mask for Africa in tif format
+- World_ELU_2015 (https://www.aag.org/wp-content/uploads/2021/12/AAG_Global_Ecosyst_bklt72.pdf)
+- Alternatively native areas (Please see narea_approach.R code)
