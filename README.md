@@ -31,10 +31,17 @@ Please download this repo by:
 - Download ZIP
 - Unzip in your local computer
 ______
-## Prepare your files (Thid step)
+## Prepare your files (Third step)
 Please download the following files: 
 - land_cover_5km_for_cleaning.tif
 - Crop and mask WorldClim layers v2.1.
 - A mask for Africa in tif format
 - World_ELU_2015 (https://www.aag.org/wp-content/uploads/2021/12/AAG_Global_Ecosyst_bklt72.pdf)
 - Alternatively native areas (Please see narea_approach.R code)
+- Prepare your data with the following columns: 
+
+  - CROPNAME (Species name)
+  - DECLATITUDE (Latitude in decimal format)
+  - DECLONGITUDE (Longitude in decimal format)
+  - database_id  (Source database)
+  - status (G for Germplasm, and H for others sources)
