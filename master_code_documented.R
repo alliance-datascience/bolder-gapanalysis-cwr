@@ -178,9 +178,9 @@ sdm_maxnet_approach_function(occName      = occName,
 #x <- readRDS("D:/GAP_ANALYSIS_LANDRACE/results/Miracle_fruit/lvl_1/Cucurbita maxima/africa/sdm.rds")
 
 #reading land use raster
-lu_raster <- terra::rast(paste0(input_data_dir,"/generic_rasters/","land_cover_5km_for_cleaning.tif"))
+lu_raster <- terra::rast(paste0(baseDir,"/runs/input_data/generic_rasters/land_cover/","land_cover_5km_for_cleaning.tif"))
 #reading native area 
-narea_shp <- sf::st_read(paste0(input_data_dir,"/nareas/",occName,"/narea.shp"))
+narea_shp <- sf::st_read(paste0(baseDir,"/runs/input_data/shps/nareas/",occName,"/narea.shp"))
 #cropping land use to native area
 lu_raster_narea <- terra::crop(lu_raster,narea_shp, mask=TRUE)
 
@@ -188,7 +188,7 @@ lu_raster_narea <- terra::crop(lu_raster,narea_shp, mask=TRUE)
 #obtaining binary SDM
 sdm <- terra::rast(paste0(model_outDir,"/", occName, "_prj_median_th.tif" ))
 #masking data to native areas
-sdm_crop <- terra::crop(x = sdm_crop,narea_shp, mask=TRUE)
+sdm_crop <- terra::crop(x = sdm,narea_shp, mask=TRUE)
 
 lu_raster_narea = terra::resample(lu_raster_narea, sdm_crop,method="near")
 
@@ -205,8 +205,8 @@ sdm_crop[sdm_crop[]==0]<- NA
 data_orig <- choose.files()
 data_orig <- read.csv(data_orig)
 #formatting data
-data_orig <- data_orig[data_orig$CROPNAME %in% occName,]
-data_orig <- data_orig[,c("CROPNAME","DECLATITUDE","DECLONGITUDE","status")]
+data_orig <- data_orig[data_orig$crop_name %in% occName,]
+data_orig <- data_orig[,c("crop_name","DECLATITUDE","DECLONGITUDE","status")]
 colnames(data_orig) <- c("species", "latitude", "longitude", "type")
 #GapAnalysis::GetDatasets() #RUN ONCE
 
@@ -245,5 +245,10 @@ terra::writeRaster(FCSex_df$GRSex_maps[[1]],paste0(gap_outDir,"/","gap_map.tif")
 write.csv(FCSex_df$FCSex,paste0(gap_outDir,"/","gap_exsitu_results.csv"),na = "",row.names = F)
 
 
-# plot(mask_africa,col="black")
-# plot(FCSex_df$GRSex_maps[[1]],add=T,col="green")
+
+#Plot results to check 
+ plot(terra::rast(mask),col="gray",legend=F)
+ plot(st_geometry(narea_shp),col="white",legend=F,add=T)
+ plot(sdm_crop,add=T,col="red",legend=F)
+ plot(FCSex_df$GRSex_maps[[1]],add=T,col="green",legend=F)
+ 
