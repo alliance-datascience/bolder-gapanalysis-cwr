@@ -1,3 +1,4 @@
+
 # Landrace Gap Analysis: master code
 # Chrystian Sosa, Julian Ramirez, Harold Achicanoy, Andres Mendez, Maria Diaz, Colin Khoury
 # CIAT, 2019
@@ -24,12 +25,12 @@ pacman::p_load(tcltk, adehabitatHR,   raster, rgdal, doSNOW, sdm, dismo,  rgeos,
 OSys <- Sys.info()[1]
 baseDir   <- switch(OSys,
                    "Linux"   = "/mnt/workspace_cluster_9/gap_analysis_landraces/runs",
-                   "Windows" = "D:/GAP_ANALYSIS_LANDRACE",
+                   "Windows" = "D:/CGIAR/DS4Climate Action LAC-Bolder África - Bolder Africa - Gap analysis/data",
                    "Darwin"  = "~nfs/workspace_cluster_9/gap_analysis_landraces/runs")
 rm(OSys)
 
 # Define code's folder
-srcDir <- paste(baseDir, "/gap_analysis_landraces-master", sep = "")
+srcDir <- paste(baseDir, "/scripts/bolder-gapanalysis-cwr-dev", sep = "")
 # Define region of study
 region <- "africa"
 
@@ -37,10 +38,10 @@ region <- "africa"
 source(paste0(srcDir, "/00_config/config_crop.R"))
 
 # Define crop
-crop <- "Finger_millet"
+crop <- "Cenchrus caudatus"
 # Define level of analysis
 #level_1 <-  c("Amaranthus cruentus") #grupos equivalence to sp
-level_1 <-  c("Eleusine indica") #grupos equivalence to sp
+level_1 <-  "Cenchrus caudatus"#c("baobab") #grupos equivalence to sp
 
 level   <- "lvl_1"
 # Define occurrence name: it is necessary to specify the group, e.g. Group = "3"
@@ -75,7 +76,7 @@ prepare_input_data(data_path = choose.files( caption = "Select a valid .csv file
                    add.longitude      = FALSE, # Just for classification models: if you want to add longitude as a predictor
                    do.predictions     = FALSE, # Just for classification models: if you want to predict some accessions that do not have the classes or groups
                    sampling_mthd      = "none", # Just for classification models: for balancing the classes
-                   mask               = mask)  # Mask according with the region of analysis
+                   mask               = "D:/CGIAR/DS4Climate Action LAC-Bolder África - Bolder Africa - Gap analysis/data/runs/input_data/mask/mask_africa.tif")  # Mask according with the region of analysis
 # Output file: e.g. ./results/african_maize/lvl_1/3/africa/input_data/african_maize_lvl_1_bd.csv
 #}
   

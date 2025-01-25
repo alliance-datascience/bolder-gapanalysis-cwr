@@ -22,7 +22,7 @@ create_occ_shp <- function(file_path, file_output, validation ){
   
   names(Occ) <- c("Longitude", "Latitude", "ensemble", "ID")
   Occ$ensemble <- as.character(Occ$ensemble)
-  Occ <- Occ[which(Occ$ensemble == occName),]
+  #Occ <- Occ[which(Occ$ensemble == occName),]
   
   message("Removing coordinates on the ocean/sea \n")
   Occ <- Occ[which(!is.na(terra::extract(x = msk, y = Occ[,c("Longitude", "Latitude")]))),]

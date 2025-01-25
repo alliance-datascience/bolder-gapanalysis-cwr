@@ -88,7 +88,9 @@ prepare_input_data <- function(data_path = choose.files( caption = "Select a val
   
   
   #loading all input rasters
-  generic_rasts <- list.files(paste0(baseDir, "/input_data/generic_rasters/", region), pattern = ".tif$", full.names = TRUE)
+ #generic_rasts <- list.files(paste0(baseDir, "/input_data/generic_rasters/", region), pattern = ".tif$", full.names = TRUE)
+  generic_rasts <- list.files("D:/CGIAR/DS4Climate Action LAC-Bolder África - Bolder Africa - Gap analysis/data/runs/input_data/generic_rasters/climate/africa",
+                              , pattern = ".tif$", full.names = TRUE)
   sp_rasts      <- list.files(paste0(baseDir, "/input_data/by_crop/", crop, "/raster/", region), pattern = ".tif$", full.names = TRUE)
   
   message("Extracting values from rasters \n")

@@ -2,9 +2,9 @@
 config_crop_dirs <- function(baseDir, crop, level_1, level_2, level_3){
 
 # input_data directory
-input_data_dir <-  paste0(baseDir, "/input_data")
+input_data_dir <-  paste0(baseDir, "/runs/input_data")
 # results_dir
-results_dir <-  paste0(baseDir, "/results")
+results_dir <-  paste0(baseDir, "/runs/results")
 # Dinamic crop input data
 layers_dir <- paste(input_data_dir, "/by_crop", sep = "")
 # input dir for each crop 
@@ -18,7 +18,7 @@ aux_dir        <- paste0(input_data_dir, "/auxiliar_rasters");  if (!file.exists
 
 #create ecosystems folder
 
-eco_dir <- paste0(input_data_dir, "/ecosystems");  if (!file.exists(eco_dir)) {dir.create(eco_dir, recursive = TRUE)}
+#eco_dir <- paste0(input_data_dir, "/ecosystems");  if (!file.exists(eco_dir)) {dir.create(eco_dir, recursive = TRUE)}
 
 ##Level 1 directories
 if(length(level_1) > 0){

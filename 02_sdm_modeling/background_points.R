@@ -134,7 +134,7 @@ pseudoAbsences_generator <- function(file_path, clsModel, overwrite = F, correla
     spData            <- read.csv(db_path, header = T, stringsAsFactors = F)
     spData$ID <- 1:nrow(spData)
     #spData[,clsModel] <- tolower(spData[,clsModel])
-    spData            <- spData[which(spData[,clsModel]== occName),]
+    #spData            <- spData[which(spData[,clsModel]== occName),]
     
     #remove H accessions
     if("status" %in% names(spData)){
@@ -160,8 +160,7 @@ pseudoAbsences_generator <- function(file_path, clsModel, overwrite = F, correla
       ids_db$used[spData$ID] <- TRUE
       
       write.csv(ids_db, ids_path, row.names = F)
-      rm(ids_db)
-    }
+      rm(ids_db)    }
     
     spData$ID <- NULL
     
@@ -196,7 +195,7 @@ pseudoAbsences_generator <- function(file_path, clsModel, overwrite = F, correla
     # }
     if(pa_method == "ecoreg"){
       
-      elu     <- terra::rast(paste0(input_data_dir, "/ecosystems/globalelu/World_ELU_2015_5km.tif"))
+      elu     <- terra::rast(paste0(baseDir, "/runs/input_data/ecosystems/globalelu/World_ELU_2015_5km.tif"))
       regions <- terra::extract(x = elu, y = unique(spData[,c("Longitude","Latitude")])); 
       regions <- sort(unique(regions[,2]))
       elu[!(elu[] %in% regions)] <- NA # Exclude ecoregions that are not in occurrence data

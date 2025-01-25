@@ -32,12 +32,12 @@ source(paste0(srcDir, "/02_sdm_modeling/sdm_maxnet_approach_function.R"))
 
 # Working directories
 message("Loading working directories\n")
-input_data_dir <- paste0(baseDir, "/input_data")
-results_dir    <- paste0(baseDir, "/results")
+input_data_dir <- paste0(baseDir, "/runs/input_data/by_crop/CWR")
+results_dir    <- paste0(baseDir, "/runs/results")
 worldDir       <- paste0(input_data_dir, "/generic_rasters/world");if(!file.exists(worldDir)){dir.create(worldDir, recursive = TRUE)}
-climDir        <- paste0(input_data_dir, "/generic_rasters/", region);if(!file.exists(climDir)){dir.create(climDir, recursive = TRUE)}
+climDir        <- paste0(baseDir, "/runs/input_data/generic_rasters/climate/", region);if(!file.exists(climDir)){dir.create(climDir, recursive = TRUE)}
 shp_dir        <- paste0(input_data_dir, "/shapefiles")
-mask_dir       <- paste0(input_data_dir, "/mask")
+mask_dir       <- paste0(baseDir, "/runs/input_data/mask")
 classResults   <- paste0(input_data_dir, "/by_crop/", crop, "/", level, "/classification");if(!file.exists(classResults)){dir.create(classResults, recursive = TRUE)}
 aux_dir        <- paste(input_data_dir,"/auxiliar_rasters",sep=""); if(!file.exists(aux_dir)){dir.create(aux_dir)}
 # Defining species directory
