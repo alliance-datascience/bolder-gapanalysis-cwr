@@ -54,8 +54,55 @@ Please download the following files:
   - DECLONGITUDE (Longitude in decimal format)
   - database_id  (Source database)
   - status (G for Germplasm, and H for other sources)
-________
+
+ ________
 
 # Other steps:
  - prepare native areas: Prepare a Excel file with the species name, and country. please see narea_approach.R. This code will create shapefiles using the geodata R package.
+
+
+# Crop Wild Relatives Gap Analysis: Master Code Documentation
+Overview
+This R script performs a comprehensive gap analysis using part of the Species distribution model of the Landraces Gap Analysis.
+ The analysis integrates species distribution modeling (SDM) with ex-situ conservation assessments to identify geographical areas where crop genetic diversity is underrepresented in genebank collections. The workflow combines data preparation, environmental variable selection, species distribution modeling, and conservation gap analysis.
+
+1. Setup and Configuration
+
+Initial cleanup and R options configuration
+Loading required R packages
+Setting up directory structure based on operating system
+Loading crop-specific configuration
+
+2. Input Data Preparation
+
+prepare_input_data(): Processes passport data (latitude, longitude, and conservation status)
+create_occ_shp(): Creates occurrence shapefiles from genebank accession data
+
+3. Species Distribution Modeling
+
+pseudoAbsences_generator(): Creates background points for modeling and selects environmental variables
+Calibration_function(): Tunes MaxEnt parameters (regularization multiplier and feature types)
+sdm_maxnet_approach_function(): Runs the species distribution model with cross-validation
+
+4. Ex-situ Conservation Gap Analysis
+
+Preparation of modeling outputs:
+
+Crops SDM to native area
+Filters by land use suitability
+Formats occurrence data
+
+FCSex(): Calculates conservation metrics including:
+
+Sampling Representativeness Score (SRS)
+Geographic Representativeness Score (GRS)
+Ecological Representativeness Score (ERS)
+Final Conservation Score (FCS)
+
+Output Files
+
+Species distribution model projections (mean, median, standard deviation)
+Thresholded distribution maps
+Gap analysis metrics in CSV format
+Gap maps identifying priority areas for collection
 
